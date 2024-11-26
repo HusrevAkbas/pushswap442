@@ -1,19 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: huakbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 15:26:46 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/26 12:59:38 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/03 15:59:04 by huakbas           #+#    #+#             */
+/*   Updated: 2024/09/03 15:59:11 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include <stdio.h> //DELETE THIS LINE
+int	ft_isdigit(int c)
+{
+	if (c < '0' || c > '9')
+		return (0);
+	else
+		return (1);
+}
+/*
+#include <stdio.h>
+int	main(int argc, char *argv[])
+{
+	int	r;
 
-int	ft_isdigit(int c);
-
-#endif // PUSH_SWAP_H
+	if (argc > 1)
+	{
+		r = ft_str_is_numeric(argv[1]);
+		printf("%d", r);
+	}
+	return (42);
+}*/
