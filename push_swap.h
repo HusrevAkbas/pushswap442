@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:46 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/29 11:26:33 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/29 11:39:19 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_spec
 	int	min;
 	int	max;
 	int	count;
+	int	is_ordered;
 } t_spec;
 
 
