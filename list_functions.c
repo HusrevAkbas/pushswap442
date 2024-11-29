@@ -1,20 +1,17 @@
 #include "push_swap.h"
 
-t_ilist	*new_list(int num)
+t_pslist	*new_list(int num, t_spec *spec)
 {
-	t_ilist	*list;
+	t_pslist	*list;
 	
-	list = malloc(sizeof(t_ilist));
+	list = malloc(sizeof(t_pslist));
 	list->data = num;
-	list->count = 1;
-	list->average = num;
-	list->max = num;
-	list->min = num;
+	list->spec = spec;
 	list->next = NULL;
-	list->medium = num;
+	return (list);
 }
 
-void	add_list(t_ilist *begin, t_ilist *toadd)
+void	add_list(t_pslist *begin, t_pslist *toadd)
 {
 	while (begin->next)
 		begin = begin->next;

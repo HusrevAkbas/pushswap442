@@ -6,28 +6,35 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:46 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/28 13:44:55 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/29 11:26:33 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include <unistd.h>
+# include <stdlib.h>
 # include <stdio.h> //DELETE THIS LINE
 
-typedef struct s_ilist
+typedef struct s_pslist
 {
 	int				data;
-	int				medium;
-	int				average;
-	int				max;
-	int				min;
-	int				count;
-	struct s_ilist	*next;
-} t_ilist;
+	struct s_spec	*spec;
+	struct s_pslist	*next;
+} t_pslist;
+
+typedef struct s_spec
+{
+	int	medium;
+	int	average;
+	int	min;
+	int	max;
+	int	count;
+} t_spec;
+
 
 int	ft_isdigit(int c);
-t_ilist	*new_list(int num);
-void	add_list(t_ilist *begin, t_ilist *toadd);
+t_pslist	*new_list(int num, t_spec *spec);
+void	add_list(t_pslist *begin, t_pslist *toadd);
 
 #endif // PUSH_SWAP_H

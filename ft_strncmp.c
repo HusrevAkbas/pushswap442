@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 15:59:04 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/29 11:28:47 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/03 15:59:51 by huakbas           #+#    #+#             */
+/*   Updated: 2024/11/29 11:28:43 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
+int	ft_strncmp(char *s1, char *s2, unsigned int n)
 {
-	if (c < '0' || c > '9')
-		return (0);
-	else
-		return (1);
-}
-/*
-#include <stdio.h>
-int	main(int argc, char *argv[])
-{
-	int	r;
+	unsigned int	i;
+	unsigned char	c1;
+	unsigned char	c2;
 
-	if (argc > 1)
+	i = 0;
+	while (i < n && (s1[i] || s2[i]))
 	{
-		r = ft_str_is_numeric(argv[1]);
-		printf("%d", r);
+		c1 = s1[i];
+		c2 = s2[i];
+		if (c1 != c2)
+			return (c1 - c2);
+		i++;
 	}
-	return (42);
-}*/
+	return (0);
+}

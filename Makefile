@@ -10,7 +10,7 @@ NAME := push_swap
 
 all:
 	cc -g ${CFLAGS} ${SRC} -o ${NAME}
-	./${NAME}
+	./${NAME} 1233 1233 123123
 
 clean:
 	rm -f ${OBJ}
