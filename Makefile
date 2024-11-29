@@ -9,7 +9,7 @@ OBJ := $(SRC:.c=.o)
 NAME := push_swap
 
 all: ${NAME} clean
-	./${NAME} 1 2 3 4 12 33 123 1233
+	./${NAME} -3 4 12 33 77
 
 ${NAME}: ${OBJ}
 	cc -g ${CFLAGS} ${OBJ} -o ${NAME}

@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/29 11:28:40 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/29 17:21:29 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	is_args_num(char **args)
 {
 	int	i;
 	int	j;
+	unsigned int	cmp;
 
 	i = 1;
 	while (args[i])
@@ -28,11 +29,18 @@ int	is_args_num(char **args)
 		j = 0;
 		while (args[i][j])
 		{
-			if (j == 0 && (args[i][j] != '-' || args[i][j] != '+'))
+			if (j == 0 && (args[i][j] == '-' || args[i][j] == '+'))
 				j++;
 			if (!ft_isdigit(args[i][j]))
 				return (0);
 			j++;
+		}
+		cmp = 1;
+		while ((int) cmp < i)
+		{
+			if (ft_strncmp(args[i], args[cmp], j) == 0)
+				return (0);
+			cmp++;
 		}
 		i++;
 	}
@@ -41,22 +49,27 @@ int	is_args_num(char **args)
 
 int	main(int argc, char **argv)
 {
+	t_spec		*spec;
+	t_pslist	*list;
+
 	if (argc < 2)
 		return (0);
-	if(!is_args_num(argv))
-		return (print_error());
-	//{
-	//	j = 0;
-	//	while (argv[i][j])
-	//	{
-	//		if (j == 0 && (argv[i][j] != '-' || argv[i][j] != '+'))
-	//			j++;
-	//		if (!ft_isdigit(argv[i][j]))
-	//			return (0);
-	//		j++;
-	//	}
-	//	i++;
-	//}
+	if(!is_args_num(argv)) //check if all args are numbers
+	{
+		print_error();
+		return (0);
+	}
+	list = set_list(&argv[1]);
+	spec = set_spec(list);
+	while (list)
+	{
+		printf("num %i\n", list->data);
+		list = list->next;
+		
+	}
+	printf("count:%i  avg:%i  order:%i max:%i med:%i min:%i sum:%li\n", 
+	spec->count, spec->average, spec->is_ordered, spec->max, 
+	spec->medium, spec->min, spec->sum);
 	printf("work!");
 	return (0);
 }
