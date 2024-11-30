@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:26:54 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/30 14:55:19 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/30 17:24:22 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ t_spec	*set_spec(t_pslist *list)
 	t_spec	*spec;
 
 	spec = new_spec();
+	if (!spec)
+		return (NULL);
 	while (list)
 	{
 		spec->count += 1;

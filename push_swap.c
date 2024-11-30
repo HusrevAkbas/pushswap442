@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/30 14:40:05 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/30 17:27:50 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int argc, char **argv)
 {
 	t_spec		*spec;
 	t_pslist	*list;
+	t_pslist	*head;
 
 	if (argc < 2)
 		return (0);
@@ -61,19 +62,34 @@ int	main(int argc, char **argv)
 	}
 	list = set_list(&argv[1]);
 	spec = set_spec(list);
+	head = list;
 	if (spec->is_ordered)
 	{
-		printf("Numbers are ordered!");
-		return (0);
+		clear_list(head);
+		free(spec);
+		return (printf("Numbers are ordered!\n"));
 	}
 	while (list)
 	{
 		printf("num %i\n", list->data);
 		list = list->next;
 	}
-	printf("count:%i  avg:%i  order:%i max:%i med:%i min:%i sum:%li\n", 
-	spec->count, spec->average, spec->is_ordered, spec->max, 
-	spec->medium, spec->min, spec->sum);
-	printf("work!");
+	reverse_rotate(&head);
+	swap(&head);
+	rotate(&head);
+	swap(&head);
+	reverse_rotate(&head);
+printf("count:%i  avg:%i  order:%i max:%i med:%i min:%i sum:%li\n", 
+spec->count, spec->average, spec->is_ordered, spec->max, 
+spec->medium, spec->min, spec->sum);
+	list = head;
+	while (list)
+	{
+		printf("num %i\n", list->data);
+		list = list->next;
+	}
+	clear_list(head);
+	free(spec);
+	printf("work!\n");
 	return (0);
 }

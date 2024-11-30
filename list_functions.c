@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:27:05 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/30 14:59:31 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/30 17:19:09 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,14 @@ void	add_front(t_pslist **head, t_pslist *toadd)
 {
 	toadd->next = *head;
 	*head = toadd;
+}
+
+void	clear_list(t_pslist *head)
+{
+	if (!head)
+		return ;
+	if (head->next)
+		clear_list(head->next);
+	free(head);
+	head = NULL;
 }
