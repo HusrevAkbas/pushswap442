@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: huakbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 15:59:51 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/29 11:28:43 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/03 15:57:35 by huakbas           #+#    #+#             */
+/*   Updated: 2024/09/03 15:58:13 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
-{
-	unsigned int	i;
-	unsigned char	c1;
-	unsigned char	c2;
+#include "libft.h"
 
-	i = 0;
-	while (i < n && (s1[i] || s2[i]))
-	{
-		c1 = s1[i];
-		c2 = s2[i];
-		if (c1 != c2)
-			return (c1 - c2);
-		i++;
-	}
-	return (0);
+int	ft_isalnum(int c)
+{
+	if (ft_isalpha(c) || ft_isdigit(c))
+		return (1);
+	else
+		return (0);
 }
+/*
+#include <stdio.h>
+int	main(int argc, char *argv[])
+{
+	int	r;
+	if (argc > 1)
+	{
+		r = ft_isalnum('-');
+		printf("%d", r);
+	}
+}*/

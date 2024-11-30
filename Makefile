@@ -1,6 +1,6 @@
 CFLAGS := -Wall -Wextra -Werror
 
-TARGET := test
+LIBFT := libft
 
 SRC := $(wildcard *.c)
 
@@ -9,10 +9,11 @@ OBJ := $(SRC:.c=.o)
 NAME := push_swap
 
 all: ${NAME} clean
-	./${NAME} -3 4 12 33 77
+	./${NAME} -3 4 -12 33 77
 
 ${NAME}: ${OBJ}
-	cc -g ${CFLAGS} ${OBJ} -o ${NAME}
+	${MAKE} -C ${LIBFT} all clean
+	cc -g ${CFLAGS} ${OBJ} -L ${LIBFT} -lft -o ${NAME}
 
 ${OBJ}: ${SRC}
 	cc -g -c ${CFLAGS} ${SRC}

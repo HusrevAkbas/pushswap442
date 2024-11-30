@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/29 17:21:29 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/30 14:22:32 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,19 @@ int	main(int argc, char **argv)
 	if(!is_args_num(argv)) //check if all args are numbers
 	{
 		print_error();
-		return (0);
+		return (127);
 	}
 	list = set_list(&argv[1]);
 	spec = set_spec(list);
+	if (spec->is_ordered)
+	{
+		printf("Numbers are ordered!");
+		return (0);
+	}
 	while (list)
 	{
 		printf("num %i\n", list->data);
 		list = list->next;
-		
 	}
 	printf("count:%i  avg:%i  order:%i max:%i med:%i min:%i sum:%li\n", 
 	spec->count, spec->average, spec->is_ordered, spec->max, 

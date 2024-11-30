@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:26:54 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/29 16:59:49 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/30 14:35:27 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_spec	*new_spec()
 	spec->medium = 0;
 	spec->min = INT_MAX;
 	spec->sum = 0;
+	spec->size_stack_B = 0;
 	return (spec);
 }
 t_spec	*set_spec(t_pslist *list)
@@ -46,6 +47,10 @@ t_spec	*set_spec(t_pslist *list)
 			spec->is_ordered = 0;
 		list = list->next;
 	}
+	spec->count_1_10 = spec->count / 10;
+	spec->count_1_5 = spec->count / 5;
+	spec->count_1_3 = spec->count / 3;
+	spec->size_stack_A = spec->count;
 	return (spec);
 }
 t_pslist	*set_list(char **args)

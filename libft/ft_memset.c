@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isdigit.c                                       :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: huakbas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/03 15:59:04 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/29 11:28:47 by huakbas          ###   ########.fr       */
+/*   Created: 2024/09/06 16:08:59 by huakbas           #+#    #+#             */
+/*   Updated: 2024/09/06 16:09:02 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
-{
-	if (c < '0' || c > '9')
-		return (0);
-	else
-		return (1);
-}
-/*
-#include <stdio.h>
-int	main(int argc, char *argv[])
-{
-	int	r;
+#include "libft.h"
 
-	if (argc > 1)
+void	*ft_memset(void *s, int c, size_t n)
+{
+	char	*pointer;
+	int		i;
+
+	pointer = s;
+	i = 0;
+	while (n > 0)
 	{
-		r = ft_str_is_numeric(argv[1]);
-		printf("%d", r);
+		pointer[i] = c;
+		i++;
+		n--;
 	}
-	return (42);
-}*/
+	return (s);
+}
