@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move_functions.c                                   :+:      :+:    :+:   */
+/*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:00:15 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/30 17:08:13 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/30 17:59:51 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@ void	reverse_rotate(t_pslist **head)
 	last->next = fst;
 	sec_last->next = NULL;
 	*head = last;
+}
+t_pslist	*push_first(t_pslist **src)
+{
+	t_pslist	*fst;
+	t_pslist	*sec;
+
+	fst = *src;
+	sec = fst->next;
+	*src = sec;
+	fst->next = NULL;
+	return (fst);
 }
 
 void	push(t_pslist **src, t_pslist **dest)

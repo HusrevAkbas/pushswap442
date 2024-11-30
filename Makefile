@@ -10,7 +10,7 @@ OBJ := $(SRC:.c=.o)
 
 NAME := push_swap
 
-TEST1 = ./${NAME} -3 4 -12 33 77
+TEST1 = ./${NAME} -3 4 -12 33 77 88 | paste - - - - - - -
 TEST2 = ./${NAME} -3 4 12 33 77 || true
 
 all: ${NAME} clean
