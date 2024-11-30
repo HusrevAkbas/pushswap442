@@ -9,8 +9,8 @@ SRC := $(wildcard *.c)
 OBJ := $(SRC:.c=.o)
 
 NAME := push_swap
-
-TEST1 = ./${NAME} -3 4 -12 33 77 88 | paste - - - - - - -
+#| paste - - - - - - -
+TEST1 = ./${NAME} -3 4 -12 33 77 88
 TEST2 = ./${NAME} -3 4 12 33 77 || true
 
 all: ${NAME} clean
@@ -24,7 +24,7 @@ ${OBJ}: ${SRC}
 	@ cc -g -c ${CFLAGS} ${SRC}
 
 ${LIBFTA}:
-	${MAKE} -C ${LIBFT} bonus clean
+	@${MAKE} -C ${LIBFT} bonus clean
 	touch ${LIBFTA}
 
 clean:
@@ -38,7 +38,7 @@ fclean: clean
 re: fclean all
 
 val:
-	-@valgrind -s --leak-check=yes --show-leak-kinds=all --track-origins=yes ${TEST1}
+	@valgrind -s --leak-check=yes --show-leak-kinds=all --track-origins=yes ${TEST1}
 
 run:
 	./${NAME}

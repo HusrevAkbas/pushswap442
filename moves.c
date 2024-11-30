@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:00:15 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/30 17:59:51 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/30 21:00:45 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ t_pslist	*push_first(t_pslist **src)
 	fst = *src;
 	sec = fst->next;
 	*src = sec;
+	sec->name = fst->name;
 	fst->next = NULL;
+	fst->name = 'B';
 	return (fst);
 }
 
@@ -75,12 +77,17 @@ void	push(t_pslist **src, t_pslist **dest)
 {
 	t_pslist	*src_fst;
 	t_pslist	*src_sec;
+	char		stack_name;
 
 	if (!src || !dest || !(*src))
 		return ;
+	stack_name = (*dest)->name;
 	src_fst = *src;
 	src_sec = src_fst->next;
+	if (src_sec)
+		src_sec->name = src_fst->name;
 	*src = src_sec;
 	src_fst->next = *dest;
 	*dest = src_fst;
+	src_fst->name = stack_name;
 }

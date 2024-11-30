@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:46 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/30 18:10:37 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/30 20:47:39 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,24 @@
 typedef struct s_pslist
 {
 	int				data;
+	char			name;
 	struct s_pslist	*next;
 } t_pslist;
 
 typedef struct s_spec
 {
-	int				medium;
-	int				average;
-	int				min;
-	int				max;
-	int				count;
-	int				is_ordered;
-	long			sum;
-	int				count_1_10;
-	int				count_1_5;
-	int				count_1_3;
-	int				size_stack_A;
-	int				size_stack_B;
+	int		medium;
+	int		average;
+	int		min;
+	int		max;
+	int		count;
+	int		is_ordered;
+	long	sum;
+	int		count_1_10;
+	int		count_1_5;
+	int		count_1_3;
+	int		size_stack_A;
+	int		size_stack_B;
 } t_spec;
 
 void	print_list(t_pslist *head); // FOR TEST - CAN BE DELETED
@@ -50,6 +51,7 @@ void	swap(t_pslist **head);
 void	rotate(t_pslist **head);
 void	reverse_rotate(t_pslist **head);
 void	push(t_pslist **src, t_pslist **dest);
+t_pslist	*push_first(t_pslist **src);
 void	clear_list(t_pslist *head);
 int	is_args_num(char **args);
 int	print_error();

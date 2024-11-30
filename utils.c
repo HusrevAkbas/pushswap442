@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:03:53 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/30 18:19:21 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/30 21:02:51 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,17 @@ int	is_args_num(char **args)
 
 void	print_list(t_pslist *head) // FOR TEST - CAN BE DELETED
 {
+	if (!head)
+	{
+		printf("no more elements\n");
+		return ;
+	}
+	printf("stack: %c ", head->name);
 	while (head->next)
 	{
-		printf("%i\n", head->data);
+		printf("%i	", head->data);
 		head = head->next;
 	}
 	printf("%i\n", head->data);
-	printf("----\n");
+	//printf("\n");
 }
