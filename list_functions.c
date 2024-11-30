@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:27:05 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/29 15:54:08 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/11/30 14:59:31 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ t_pslist	*new_list(int num)
 	list->next = NULL;
 	return (list);
 }
+t_pslist	*find_last(t_pslist *head)
+{
+	while (head->next)
+		head = head->next;
+	return (head);
+}
 
 void	add_back(t_pslist *head, t_pslist *toadd)
 {
@@ -31,8 +37,8 @@ void	add_back(t_pslist *head, t_pslist *toadd)
 	head->next = toadd;
 }
 
-t_pslist	*add_front(t_pslist *head, t_pslist *toadd)
+void	add_front(t_pslist **head, t_pslist *toadd)
 {
-	toadd->next = head;
-	return (toadd);
+	toadd->next = *head;
+	*head = toadd;
 }
