@@ -6,18 +6,11 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 15:58:33 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/21 12:37:16 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/01 18:41:54 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static int	set_num(int a, int b)
-{
-	a *= 10;
-	a -= b;
-	return (a);
-}
 
 int	ft_atoi(const char *str)
 {
@@ -42,7 +35,7 @@ int	ft_atoi(const char *str)
 	while (*str <= '9' && *str >= '0')
 	{
 		b = *str - 48;
-		a = set_num(a, b);
+		a = a * 10 - b;
 		str++;
 	}
 	return (is_n * a);

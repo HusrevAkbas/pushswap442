@@ -6,13 +6,13 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:00:15 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/30 21:00:45 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/01 18:38:53 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_pslist **head)
+void	swap(t_pslist **head, int print_msg)
 {
 	t_pslist	*fst;
 	t_pslist	*sec;
@@ -24,8 +24,17 @@ void	swap(t_pslist **head)
 	fst->next = sec->next;
 	sec->next = fst;
 	*head = sec;
+	if (print_msg)
+	{
+		if (fst->name == 'A')
+			write(1, "sa\n", 3);
+		else if (fst->name == 'B')
+			write(1, "sb\n", 3);
+		else
+			write(1, "Error in moves.c:swap\n", 22);
+	}
 }
-void	rotate(t_pslist **head)
+void	rotate(t_pslist **head, int print_msg)
 {
 	t_pslist	*fst;
 	t_pslist	*sec;
@@ -39,8 +48,17 @@ void	rotate(t_pslist **head)
 		sec = sec->next;
 	sec->next = fst;
 	fst->next = NULL;
+	if (print_msg)
+	{
+		if (fst->name == 'A')
+			write(1, "ra\n", 3);
+		else if (fst->name == 'B')
+			write(1, "rb\n", 3);
+		else
+			write(1, "Error in moves.c:rotate\n", 24);
+	}
 }
-void	reverse_rotate(t_pslist **head)
+void	reverse_rotate(t_pslist **head, int print_msg)
 {
 	t_pslist	*last;
 	t_pslist	*sec_last;
@@ -58,6 +76,15 @@ void	reverse_rotate(t_pslist **head)
 	last->next = fst;
 	sec_last->next = NULL;
 	*head = last;
+	if (print_msg)
+	{
+		if (fst->name == 'A')
+			write(1, "ra\n", 3);
+		else if (fst->name == 'B')
+			write(1, "rb\n", 3);
+		else
+			write(1, "Error in moves.c:reverse_rotate\n", 32);
+	}
 }
 t_pslist	*push_first(t_pslist **src)
 {
@@ -69,7 +96,16 @@ t_pslist	*push_first(t_pslist **src)
 	*src = sec;
 	sec->name = fst->name;
 	fst->next = NULL;
-	fst->name = 'B';
+	if ((*src)->name == 'A')
+		fst->name = 'B';
+	else if ((*src)->name == 'B')
+		fst->name = 'A';
+	if (fst->name == 'A')
+		write(1, "pa\n", 3);
+	else if (fst->name == 'B')
+		write(1, "pb\n", 3);
+	else
+		write(1, "Error in moves.c:push_first\n", 28);
 	return (fst);
 }
 
@@ -84,10 +120,14 @@ void	push(t_pslist **src, t_pslist **dest)
 	stack_name = (*dest)->name;
 	src_fst = *src;
 	src_sec = src_fst->next;
-	if (src_sec)
-		src_sec->name = src_fst->name;
 	*src = src_sec;
 	src_fst->next = *dest;
 	*dest = src_fst;
 	src_fst->name = stack_name;
+	if (src_fst->name == 'A')
+		write(1, "pa\n", 3);
+	else if (src_fst->name == 'B')
+		write(1, "pb\n", 3);
+	else
+		write(1, "Error in moves.c:push\n", 22);
 }
