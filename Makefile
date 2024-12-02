@@ -10,30 +10,30 @@ OBJ := $(SRC:.c=.o)
 
 NAME := push_swap
 #| paste - - - - - - -
-TEST1 = ./${NAME} -3 4 -12 33 77 88 || true
+TEST1 = ./${NAME} -3 4 -12 33 77 88
 TEST2 = ./${NAME} -3 4 12 33 77 || true
 
 all: ${NAME} clean
-#-@./${NAME} -3 4 12 33 77 || true
+	-${TEST2}
 	-${TEST1}
 
 ${NAME}: ${OBJ} ${LIBFTA}
-	@ cc -g ${CFLAGS} ${OBJ} -L ${LIBFT} -lft -o ${NAME}
+	@-cc -g ${CFLAGS} ${OBJ} -L ${LIBFT} -lft -o ${NAME}
 
 ${OBJ}: ${SRC}
-	@ cc -g -c ${CFLAGS} ${SRC}
+	@- cc -g -c ${CFLAGS} ${SRC}
 
 ${LIBFTA}:
-	@${MAKE} -C ${LIBFT} bonus clean
+	@- ${MAKE} -C ${LIBFT} bonus clean
 	touch ${LIBFTA}
 
 clean:
 #@ ${MAKE} -C ${LIBFT} clean
-	@ rm -f ${OBJ}
+	@- rm -f ${OBJ}
 
 fclean: clean
 	@ ${MAKE} -C ${LIBFT} fclean
-	@ rm -f ${NAME} ${LIBFTA}
+	rm -f ${NAME} ${LIBFTA}
 
 re: fclean all
 

@@ -6,55 +6,23 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:26:54 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/01 18:51:49 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/02 14:11:13 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_spec	*new_spec()
+int	is_ordered(t_pslist *head)
 {
-	t_spec	*spec;
-
-	spec = malloc(sizeof(t_spec));
-	if (!spec)
-		return (NULL);
-	spec->average = 0;
-	spec->count = 0;
-	spec->is_ordered = 1;
-	spec->max = INT_MIN;
-	spec->medium = 0;
-	spec->min = INT_MAX;
-	spec->sum = 0;
-	spec->size_stack_B = 0;
-	return (spec);
-}
-t_spec	*set_spec(t_pslist *list)
-{
-	t_spec	*spec;
-
-	spec = new_spec();
-	if (!spec)
-		return (NULL);
-	while (list)
+	while (head->next)
 	{
-		spec->count += 1;
-		spec->sum += list->data;
-		spec->average = spec->sum / spec->count;
-		if (spec->max < list->data)
-			spec->max = list->data;
-		if (spec->min > list->data)
-			spec->min = list->data;
-		if (list->data < spec->max)
-			spec->is_ordered = 0;
-		list = list->next;
+		if (head->data > head->next->data)
+			return (0);
+		head = head->next;
 	}
-	spec->count_1_10 = spec->count / 10;
-	spec->count_1_5 = spec->count / 5;
-	spec->count_1_3 = spec->count / 3;
-	spec->size_stack_A = spec->count;
-	return (spec);
+	return (1);
 }
+
 t_pslist	*set_list(char **args)
 {
 	t_pslist	*list;
