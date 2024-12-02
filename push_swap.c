@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/02 16:32:46 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/02 19:47:24 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,23 @@
 
 void	magic_one(t_pslist **stack_a, t_pslist **stack_b)
 {
-	if (is_rotate(*stack_a))
+	if (is_rotate_a(*stack_a))
 	{
-		if (!is_rotate(*stack_b))
+		if (is_rotate_b(*stack_b))
 			rotate_both(stack_a, stack_b);
 		else
 			rotate(stack_a, 1);
 	}
-	else if (is_swap(*stack_a))
+	else if (is_rotate_b(*stack_b))
+		rotate(stack_b, 1);
+	else if (is_swap_a(*stack_a))
 	{
-		if (is_swap(*stack_b))
+		if (is_swap_b(*stack_b))
 			swap_both(stack_a, stack_b);
 		swap(stack_a, 1);
 	}
+	else if (is_swap_b(*stack_b))
+		swap(stack_b, 1);
 	else
 		push(stack_a, stack_b);
 }
@@ -35,9 +39,9 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 	t_pslist	*greatest;
 
 	greatest = find_greatest(*stack_b);
-	if (is_swap(*stack_a))
+	if (is_swap_a(*stack_a))
 	{
-		if (is_swap(*stack_b))
+		if (is_swap_a(*stack_b))
 			swap_both(stack_a, stack_b);
 		else
 			swap(stack_a, 1);
@@ -94,7 +98,7 @@ void	start_magic(char **args)
 		magic_two(&stack_a, &stack_b);
 		size = size_list(stack_b);
 	}
-	if (!is_swap(stack_b))
+	if (!is_swap_a(stack_b))
 		swap(&stack_b, 1);
 	push(&stack_b, &stack_a);
 	push(&stack_b, &stack_a);

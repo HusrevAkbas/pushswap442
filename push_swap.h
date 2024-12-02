@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:46 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/02 16:27:46 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/02 19:45:05 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_pslist
 	int				data;
 	char			name;
 	int				greaters;
+	int				smallers;
 	int				index;
 	struct s_pslist	*second_greatest;
 	int				size;
@@ -33,8 +34,10 @@ void	print_list(t_pslist *head); // FOR TEST - CAN BE DELETED
 t_pslist	*new_list(int num);
 void	add_back(t_pslist *begin, t_pslist *toadd);
 int	is_ordered(t_pslist *head);
-int	is_rotate(t_pslist *head);
-int	is_swap(t_pslist *head);
+int	is_rotate_a(t_pslist *head);
+int	is_rotate_b(t_pslist *head);
+int	is_swap_a(t_pslist *head);
+int	is_swap_b(t_pslist *head);
 t_pslist	*find_greatest(t_pslist *head);
 t_pslist	*set_list(char **args);
 t_pslist	*set_list_B(char *arg);

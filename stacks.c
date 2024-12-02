@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:26:54 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/02 15:57:30 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/02 19:44:35 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,32 @@ void	greaters(t_pslist *head)
 	t_pslist	*node;
 
 	node = head;
-	node->greaters = 0;
-	node->size = 0;
-	while (head)
+	head->greaters = 0;
+	head->size = 0;
+	while (node)
 	{
-		if (head->data > node->data)
-			node->greaters++;
-		node->size++;
-		head = head->next;
+		if (node->data > head->data)
+			head->greaters++;
+		head->size++;
+		node = node->next;
 	}
 }
-int	is_rotate(t_pslist *head)
+void	smallers(t_pslist *head)
+{
+	t_pslist	*node;
+
+	node = head;
+	head->smallers = 0;
+	head->size = 0;
+	while (node)
+	{
+		if (node->data < head->data)
+			head->smallers++;
+		head->size++;
+		node = node->next;
+	}
+}
+int	is_rotate_a(t_pslist *head)
 {
 	if (!head)
 		return (0);
@@ -46,11 +61,28 @@ int	is_rotate(t_pslist *head)
 		return (1);
 	return (0);
 }
-int	is_swap(t_pslist *head)
+int	is_rotate_b(t_pslist *head)
+{
+	if (!head || size_list(head) < 2)
+		return (0);
+	smallers(head);
+	if (head->smallers < head->size / 2)
+		return (1);
+	return (0);
+}
+int	is_swap_a(t_pslist *head)
 {
 	if (!head || !head->next)
 		return (0);
 	if (head->data > head->next->data)
+		return (1);
+	return (0);
+}
+int	is_swap_b(t_pslist *head)
+{
+	if (!head || !head->next)
+		return (0);
+	if (head->data < head->next->data)
 		return (1);
 	return (0);
 }
