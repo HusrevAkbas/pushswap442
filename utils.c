@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:03:53 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/01 19:17:56 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/02 15:13:21 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int	is_duplicate(char **args, int i)
 	int	len;
 
 	j = 0;
-	len = ft_strlen(args[j]);
-	if (ft_strlen(args[i]) > ft_strlen(args[j]))
-		len = ft_strlen(args[i]);
+	len = ft_strlen(args[i]);
 	while (j < i)
 	{
+		if (ft_strlen(args[j]) > ft_strlen(args[i]))
+			len = ft_strlen(args[j]);
 		if (!ft_strncmp(args[i], args[j], len))
 			return (1);
 		j++;
@@ -75,7 +75,7 @@ void	print_list(t_pslist *head) // FOR TEST - CAN BE DELETED
 	printf("stack: %c	", head->name);
 	while (head->next)
 	{
-		printf("%i	", head->data);
+		printf("%i | ", head->data);
 		head = head->next;
 	}
 	printf("%i\n", head->data);

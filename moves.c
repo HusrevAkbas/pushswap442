@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:00:15 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/01 18:38:53 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/02 16:19:55 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	rotate(t_pslist **head, int print_msg)
 		sec = sec->next;
 	sec->next = fst;
 	fst->next = NULL;
-	if (print_msg)
+	if (!print_msg)
 	{
 		if (fst->name == 'A')
 			write(1, "ra\n", 3);
@@ -76,12 +76,12 @@ void	reverse_rotate(t_pslist **head, int print_msg)
 	last->next = fst;
 	sec_last->next = NULL;
 	*head = last;
-	if (print_msg)
+	if (!print_msg)
 	{
 		if (fst->name == 'A')
-			write(1, "ra\n", 3);
+			write(1, "rra\n", 3);
 		else if (fst->name == 'B')
-			write(1, "rb\n", 3);
+			write(1, "rrb\n", 3);
 		else
 			write(1, "Error in moves.c:reverse_rotate\n", 32);
 	}
@@ -117,7 +117,15 @@ void	push(t_pslist **src, t_pslist **dest)
 
 	if (!src || !dest || !(*src))
 		return ;
-	stack_name = (*dest)->name;
+	if ((*dest)->name == 'C')
+	{
+		free(*dest);
+		*dest = NULL;
+	}
+	if (!(*dest))
+		stack_name = 'B';
+	else
+		stack_name = (*dest)->name;
 	src_fst = *src;
 	src_sec = src_fst->next;
 	*src = src_sec;
