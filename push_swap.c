@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/02 19:47:24 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/03 13:20:01 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	magic_one(t_pslist **stack_a, t_pslist **stack_b)
 	{
 		if (is_swap_b(*stack_b))
 			swap_both(stack_a, stack_b);
-		swap(stack_a, 1);
+		else
+			swap(stack_a, 1);
 	}
 	else if (is_swap_b(*stack_b))
 		swap(stack_b, 1);
