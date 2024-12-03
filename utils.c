@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:03:53 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/02 15:13:21 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/03 16:11:12 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	print_list(t_pslist *head) // FOR TEST - CAN BE DELETED
 	printf("stack: %c	", head->name);
 	while (head->next)
 	{
-		printf("%i | ", head->data);
+		printf("%4i | ", head->data);
 		head = head->next;
 	}
 	printf("%i\n", head->data);

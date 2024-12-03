@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/03 16:02:25 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/03 16:40:58 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 			swap(stack_a, 1);
 	}
 	greatest = find_greatest(*stack_b);
-printf("gr in: %i, gr %i, sec gr %i size s b: %i\n", greatest->index, greatest->data, greatest->second_greatest->data, size_list(*stack_b));
-	if (greatest->second_greatest == *stack_b)
+	if (greatest->second_greatest == *stack_b
+		&& greatest->data < (*stack_a)->data)
 		push(stack_b, stack_a);
 	if (greatest == *stack_b)
 		push(stack_b, stack_a);
@@ -85,19 +85,33 @@ void	start_magic(char **args)
 	//print_list(stack_a);
 	//print_list(stack_b);
 	}
-	while ( size_list(stack_b)  > 2)
+	while ( size_list(stack_b) > 2)
 	{
 		magic_two(&stack_a, &stack_b);
-	print_list(stack_a);
-	print_list(stack_b);
+	//print_list(stack_a);
+	//print_list(stack_b);
 	}
-	if (!is_swap_a(stack_b))
+	if (is_swap_a(stack_a))
+		swap(&stack_a, 1);
+	if (is_swap_b(stack_b))
 		swap(&stack_b, 1);
 	push(&stack_b, &stack_a);
 	push(&stack_b, &stack_a);
 	print_list(stack_a);
 	print_list(stack_b);
-	printf("size %i", size_list(stack_a));
+	printf("size %i\n", size_list(stack_a));
+	t_pslist *node;
+	node = stack_a;
+	while (node->next)
+	{
+		if (node->data > node->next->data)
+		{
+			printf("NOT ORDERED");
+			return ;
+		}
+		node = node->next;
+	}
+	printf("IN ORDER");
 	//WRITE CODES ABOVE THIS
 	clear_list(stack_b);
 	clear_list(stack_a);
