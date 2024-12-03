@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:31:08 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/03 15:57:17 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/03 18:09:37 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,9 @@ t_pslist	*find_greatest(t_pslist *head)
 
 	if (!head)
 		return (NULL);
-	node = head;
 	index = 0;
-	greatest = node;
-	node = node->next;
+	greatest = head;
+	node = head->next;
 	while (node)
 	{
 		index += 1;
