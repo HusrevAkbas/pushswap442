@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/03 14:32:28 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/03 16:02:25 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,15 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 			swap(stack_a, 1);
 	}
 	greatest = find_greatest(*stack_b);
-	if (greatest->index <= size_list(*stack_b) / 2)
-	{
-		if (greatest == *stack_b)
-			push(stack_b, stack_a);
-		if (greatest->second_greatest == *stack_b)
-			push(stack_b, stack_a);
-		if (greatest == *stack_b)
-			push(stack_b, stack_a);
+printf("gr in: %i, gr %i, sec gr %i size s b: %i\n", greatest->index, greatest->data, greatest->second_greatest->data, size_list(*stack_b));
+	if (greatest->second_greatest == *stack_b)
+		push(stack_b, stack_a);
+	if (greatest == *stack_b)
+		push(stack_b, stack_a);
+	else if (greatest->index <= size_list(*stack_b) / 2)
 		rotate(stack_b, 1);
-	}
 	else
-	{
-		if (greatest == *stack_b)
-			push(stack_b, stack_a);
-		if (greatest->second_greatest == *stack_b)
-			push(stack_b, stack_a);
-		if (greatest == *stack_b)
-			push(stack_b, stack_a);
 		reverse_rotate(stack_b, 1);
-	}
 }
 void	start_magic(char **args)
 {
@@ -99,8 +88,8 @@ void	start_magic(char **args)
 	while ( size_list(stack_b)  > 2)
 	{
 		magic_two(&stack_a, &stack_b);
-	//print_list(stack_a);
-	//print_list(stack_b);
+	print_list(stack_a);
+	print_list(stack_b);
 	}
 	if (!is_swap_a(stack_b))
 		swap(&stack_b, 1);
@@ -108,6 +97,7 @@ void	start_magic(char **args)
 	push(&stack_b, &stack_a);
 	print_list(stack_a);
 	print_list(stack_b);
+	printf("size %i", size_list(stack_a));
 	//WRITE CODES ABOVE THIS
 	clear_list(stack_b);
 	clear_list(stack_a);

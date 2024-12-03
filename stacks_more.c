@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:31:08 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/03 14:36:28 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/03 15:57:17 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,34 @@
 t_pslist	*find_greatest(t_pslist *head)
 {
 	t_pslist	*greatest;
-	t_pslist	*second_greatest;
+	t_pslist	*node;
+	int			index;
 
-	head->index = 0;
-	greatest = head;
-	second_greatest = greatest;
-	head = greatest->next;
-	while (head)
+	if (!head)
+		return (NULL);
+	node = head;
+	index = 0;
+	greatest = node;
+	node = node->next;
+	while (node)
 	{
-		head->index += 1;
-		if (head->data > greatest->data)
+		index += 1;
+		if (node->data > greatest->data)
 		{
-			second_greatest = greatest;
-			greatest = head;
+			greatest = node;
+			greatest->index = index;
 		}
-		head = head->next;
+		node = node->next;
+	}
+	node = head;
+	greatest->second_greatest = node;
+	if (greatest == node)
+		greatest->second_greatest = node->next;
+	while (node)
+	{
+		if (node->data > greatest->second_greatest->data && node->data != greatest->data)
+			greatest->second_greatest = node;
+		node = node->next;
 	}
 	return greatest;
 }
