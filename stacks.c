@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:26:54 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/02 19:44:35 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/03 13:26:35 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,10 @@ void	greaters(t_pslist *head)
 
 	node = head;
 	head->greaters = 0;
-	head->size = 0;
 	while (node)
 	{
 		if (node->data > head->data)
 			head->greaters++;
-		head->size++;
 		node = node->next;
 	}
 }
@@ -43,12 +41,10 @@ void	smallers(t_pslist *head)
 
 	node = head;
 	head->smallers = 0;
-	head->size = 0;
 	while (node)
 	{
 		if (node->data < head->data)
 			head->smallers++;
-		head->size++;
 		node = node->next;
 	}
 }
@@ -57,7 +53,7 @@ int	is_rotate_a(t_pslist *head)
 	if (!head)
 		return (0);
 	greaters(head);
-	if (head->greaters <= head->size / 2)
+	if (head->greaters <= size_list(head) / 2)
 		return (1);
 	return (0);
 }
@@ -66,7 +62,7 @@ int	is_rotate_b(t_pslist *head)
 	if (!head || size_list(head) < 2)
 		return (0);
 	smallers(head);
-	if (head->smallers < head->size / 2)
+	if (head->smallers < size_list(head) / 2)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/03 13:20:01 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/03 14:32:28 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,40 +39,39 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 {
 	t_pslist	*greatest;
 
-	greatest = find_greatest(*stack_b);
 	if (is_swap_a(*stack_a))
 	{
-		if (is_swap_a(*stack_b))
+		if (is_swap_b(*stack_b))
 			swap_both(stack_a, stack_b);
 		else
 			swap(stack_a, 1);
 	}
-	if (greatest->index <= greatest->size)
+	greatest = find_greatest(*stack_b);
+	if (greatest->index <= size_list(*stack_b) / 2)
 	{
-		greatest = find_greatest(*stack_b);
+		if (greatest == *stack_b)
+			push(stack_b, stack_a);
 		if (greatest->second_greatest == *stack_b)
 			push(stack_b, stack_a);
-		greatest = find_greatest(*stack_b);
+		if (greatest == *stack_b)
+			push(stack_b, stack_a);
+		rotate(stack_b, 1);
+	}
+	else
+	{
+		if (greatest == *stack_b)
+			push(stack_b, stack_a);
+		if (greatest->second_greatest == *stack_b)
+			push(stack_b, stack_a);
 		if (greatest == *stack_b)
 			push(stack_b, stack_a);
 		reverse_rotate(stack_b, 1);
-	}
-	if (greatest->index > greatest->size / 2)
-	{
-		greatest = find_greatest(*stack_b);
-		if (greatest->second_greatest == *stack_b)
-			push(stack_b, stack_a);
-		greatest = find_greatest(*stack_b);
-		if (greatest->index == 0)
-			push(stack_b, stack_a);
-		rotate(stack_b, 1);
 	}
 }
 void	start_magic(char **args)
 {
 	t_pslist	*stack_a;
 	t_pslist	*stack_b;
-	int			size;
 
 	stack_b = set_list_B(args[0]);
 	if (!stack_b)
@@ -92,12 +91,16 @@ void	start_magic(char **args)
 	}
 	print_list(stack_a);
 	while (!is_ordered(stack_a))
+	{
 		magic_one(&stack_a, &stack_b);
-	size = size_list(stack_b);
-	while (size > 2)
+	//print_list(stack_a);
+	//print_list(stack_b);
+	}
+	while ( size_list(stack_b)  > 2)
 	{
 		magic_two(&stack_a, &stack_b);
-		size = size_list(stack_b);
+	//print_list(stack_a);
+	//print_list(stack_b);
 	}
 	if (!is_swap_a(stack_b))
 		swap(&stack_b, 1);

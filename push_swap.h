@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:46 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/02 19:45:05 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/03 13:24:22 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_pslist
 	int				smallers;
 	int				index;
 	struct s_pslist	*second_greatest;
-	int				size;
 	struct s_pslist	*next;
 } t_pslist;
 
