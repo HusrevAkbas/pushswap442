@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/03 18:39:49 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/04 13:06:26 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,15 @@ void	start_magic(char **args)
 	//print_list(stack_a);
 	//print_list(stack_b);
 	}
-	if (is_swap_a(stack_a))
-		swap(&stack_a, 1);
-	if (is_swap_b(stack_b))
-		swap(&stack_b, 1);
-	push(&stack_b, &stack_a);
-	push(&stack_b, &stack_a);
+	if (stack_b->name != 'C')
+	{
+		if (is_swap_a(stack_a))
+			swap(&stack_a, 1);
+		if (is_swap_b(stack_b))
+			swap(&stack_b, 1);
+		push(&stack_b, &stack_a);
+		push(&stack_b, &stack_a);
+	}
 	print_list(stack_a);
 	print_list(stack_b);
 	printf("size %i\n", size_list(stack_a));
