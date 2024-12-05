@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:31:08 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/05 13:19:01 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/05 14:07:04 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,24 @@ t_pslist	*find_greatest(t_pslist *head)
 	}
 	find_second_greatest(head, greatest);
 	return greatest;
+}
+t_pslist	*find_smallest_bt(t_pslist *head, t_pslist *greatest)
+{
+	t_pslist	*node;
+	t_pslist	*smallest_bt;
+
+	node = head;
+	smallest_bt = NULL;
+	if (greatest->index <= size_list(head))
+	{
+		while (node && node != greatest)
+		{
+			if (!smallest_bt || smallest_bt->data < node->data)
+				smallest_bt = node;
+			node = node->next;
+		}
+	}
+	return	smallest_bt;
 }
 int	size_list(t_pslist *head)
 {

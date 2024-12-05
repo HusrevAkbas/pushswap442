@@ -18,7 +18,7 @@ TEST2 = ./${NAME} -3 4 12 33 77 || true
 
 all: ${NAME} clean
 #	-${TEST2}
-	${TEST500}
+	${TEST100}
 
 ${NAME}: ${OBJ} ${LIBFTA}
 	@-cc -g ${CFLAGS} ${OBJ} -L ${LIBFT} -lft -o ${NAME}

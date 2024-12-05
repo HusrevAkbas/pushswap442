@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:00:15 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/03 14:04:05 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/05 14:08:58 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	rotate(t_pslist **head, int print_msg)
 		sec = sec->next;
 	sec->next = fst;
 	fst->next = NULL;
+	(*head)->last = fst;
 	if (print_msg)
 	{
 		if ((*head)->name == 'A')
@@ -76,6 +77,7 @@ void	reverse_rotate(t_pslist **head, int print_msg)
 	last->next = fst;
 	sec_last->next = NULL;
 	*head = last;
+	(*head)->last = sec_last;
 	if (print_msg)
 	{
 		if ((*head)->name == 'A')
