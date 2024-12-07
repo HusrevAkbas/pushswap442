@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/07 15:42:55 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:50:38 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	start_magic(char **args)
 		printf("Numbers are ordered!\n");
 		return ;
 	}
-	print_list(stack_a);
+	//print_list(stack_a);
 	while (!is_ordered(stack_a))
 	{
 		magic_one(&stack_a, &stack_b);
@@ -93,9 +93,9 @@ void	start_magic(char **args)
 		push(&stack_b, &stack_a);
 		push(&stack_b, &stack_a);
 	}
-	print_list(stack_a);
-	print_list(stack_b);
-	printf("size %i\n", size_list(stack_a));
+	//print_list(stack_a);
+	//print_list(stack_b);
+	//printf("size %i\n", size_list(stack_a));
 	t_pslist *node;
 	node = stack_a;
 	while (node->next)
@@ -107,7 +107,7 @@ void	start_magic(char **args)
 		}
 		node = node->next;
 	}
-	printf("IN ORDER");
+	//printf("IN ORDER");
 	//WRITE CODES ABOVE THIS
 	clear_list(stack_b);
 	clear_list(stack_a);
@@ -121,6 +121,8 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		nums = ft_split(argv[1], ' ');
+		if (!nums)
+			return (0);
 		if (!is_args_num(nums)) //check if all args are numbers
 		{
 			clear_split(nums);
