@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:03:53 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/03 16:11:12 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:37:01 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	is_args_num(char **args)
 {
 	int	i;
 
+	if (!args || !args[0])
+		return (0);
 	i = 0;
 	while (args[i])
 	{

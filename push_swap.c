@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/04 13:41:29 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:42:55 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,22 @@ void	start_magic(char **args)
 }
 int	main(int argc, char **argv)
 {
+	char	**nums;
+
 	if (argc < 2)
 		return (0);
+	if (argc == 2)
+	{
+		nums = ft_split(argv[1], ' ');
+		if (!is_args_num(nums)) //check if all args are numbers
+		{
+			clear_split(nums);
+			return print_error();
+		}
+		start_magic(nums);
+		clear_split(nums);
+		return (0);
+	}
 	if (!is_args_num(&argv[1])) //check if all args are numbers
 		return print_error();
 	start_magic(&argv[1]);

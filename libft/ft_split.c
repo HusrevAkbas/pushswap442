@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 16:47:59 by huakbas           #+#    #+#             */
-/*   Updated: 2024/11/21 12:39:37 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:44:21 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,21 @@ static char	**clear_mem(char **pointer, int i)
 	free(pointer);
 	pointer = NULL;
 	return (pointer);
+}
+void	clear_split(char **pointer)
+{
+	int	i;
+
+	if (!pointer || !pointer[0])
+		return ;
+	i = 0;
+	while (pointer[i])
+	{
+		free(pointer[i]);
+		i++;
+	}
+	free(pointer);
+	pointer = NULL;
 }
 
 static char	**split(char **pointer, char *s, char c, size_t word_count)
@@ -91,5 +106,8 @@ char	**ft_split(char const *s, char c)
 		pointer[word_count] = NULL;
 		return (pointer);
 	}
-	return (split(pointer, str, c, word_count));
+	pointer = (split(pointer, str, c, word_count));
+	if (!pointer)
+		return (NULL);
+	return (pointer);
 }

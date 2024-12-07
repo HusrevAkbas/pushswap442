@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 19:10:26 by huakbas           #+#    #+#             */
-/*   Updated: 2024/09/12 19:10:32 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/07 15:38:13 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,19 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	size_t	i;
 	size_t	div;
 
-	if (nmemb == 0 || size == 0)
-		return ((void *) malloc(0));
+	if (nmemb < 1 || size < 1)
+	{
+		pointer = (void *) malloc(0);
+		if (!pointer)
+			return (NULL);
+		return (pointer);
+	}
 	div = ULONG_MAX / nmemb;
 	if (div < size)
-		return (0);
-	pointer = (char *) malloc(nmemb * size);
-	if (pointer == NULL)
-	{
-		free(pointer);
 		return (NULL);
-	}
+	pointer = malloc(nmemb * size);
+	if (!pointer)
+		return (NULL);
 	i = 0;
 	while (i < size * nmemb)
 		pointer[i++] = 0;
