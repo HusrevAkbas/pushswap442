@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/07 17:27:43 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/07 17:50:54 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,6 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 		reverse_rotate(stack_b, 1);
 }
 
-void	last_touch(t_pslist **stack_a, t_pslist **stack_b)
-{
-	if (is_swap_a(*stack_a))
-		swap(stack_a, 1);
-	push(stack_b, stack_a);
-}
-
 void	start_magic(char **args)
 {
 	t_pslist	*stack_a;
@@ -83,8 +76,8 @@ void	start_magic(char **args)
 		magic_one(&stack_a, &stack_b);
 	while (size_list(stack_b) > 1)
 		magic_two(&stack_a, &stack_b);
-	if (stack_b->name != 'C')
-		last_touch(&stack_a, &stack_b);
+	if (is_swap_a(stack_a))
+		swap(&stack_a, 1);
 	clear_list(stack_a, stack_b);
 }
 
