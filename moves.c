@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:00:15 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/05 14:08:58 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/07 17:28:27 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@ void	swap(t_pslist **head, int print_msg)
 	{
 		if ((*head)->name == 'A')
 			write(1, "sa\n", 3);
-		else if ((*head)->name == 'B')
-			write(1, "sb\n", 3);
 		else
-			write(1, "Error in moves.c:swap\n", 22);
+			write(1, "sb\n", 3);
 	}
 }
+
 void	rotate(t_pslist **head, int print_msg)
 {
 	t_pslist	*fst;
@@ -53,12 +52,11 @@ void	rotate(t_pslist **head, int print_msg)
 	{
 		if ((*head)->name == 'A')
 			write(1, "ra\n", 3);
-		else if ((*head)->name == 'B')
-			write(1, "rb\n", 3);
 		else
-			write(1, "Error in moves.c:rotate\n", 24);
+			write(1, "rb\n", 3);
 	}
 }
+
 void	reverse_rotate(t_pslist **head, int print_msg)
 {
 	t_pslist	*last;
@@ -82,12 +80,11 @@ void	reverse_rotate(t_pslist **head, int print_msg)
 	{
 		if ((*head)->name == 'A')
 			write(1, "rra\n", 4);
-		else if ((*head)->name == 'B')
-			write(1, "rrb\n", 4);
 		else
-			write(1, "Error in moves.c:reverse_rotate\n", 32);
+			write(1, "rrb\n", 4);
 	}
 }
+
 void	push(t_pslist **src, t_pslist **dest)
 {
 	t_pslist	*src_fst;
@@ -112,8 +109,6 @@ void	push(t_pslist **src, t_pslist **dest)
 	src_fst->name = stack_name;
 	if (src_fst->name == 'A')
 		write(1, "pa\n", 3);
-	else if (src_fst->name == 'B')
-		write(1, "pb\n", 3);
 	else
-		write(1, "Error in moves.c:push\n", 22);
+		write(1, "pb\n", 3);
 }

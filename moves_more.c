@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 18:00:05 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/01 18:39:53 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/07 17:20:10 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ void	swap_both(t_pslist **list_a, t_pslist **list_b)
 	swap(list_b, 0);
 	write(1, "ss\n", 3);
 }
+
 void	rotate_both(t_pslist **list_a, t_pslist **list_b)
 {
 	rotate(list_a, 0);
 	rotate(list_b, 0);
 	write(1, "rr\n", 3);
 }
+
 void	reverse_rotate_both(t_pslist **list_a, t_pslist **list_b)
 {
 	reverse_rotate(list_a, 0);

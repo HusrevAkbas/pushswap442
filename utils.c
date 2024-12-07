@@ -6,16 +6,17 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:03:53 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/07 15:37:01 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/07 17:19:37 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	print_error()
+int	print_error(void)
 {
 	return (write(1, "Error\n", 6));
 }
+
 int	is_number(char *arg)
 {
 	int	i;
@@ -31,6 +32,7 @@ int	is_number(char *arg)
 	}
 	return (1);
 }
+
 int	is_duplicate(char **args, int i)
 {
 	int	j;
@@ -65,21 +67,4 @@ int	is_args_num(char **args)
 		i++;
 	}
 	return (1);
-}
-
-void	print_list(t_pslist *head) // FOR TEST - CAN BE DELETED
-{
-	if (!head)
-	{
-		printf("no more elements\n");
-		return ;
-	}
-	printf("stack: %c	", head->name);
-	while (head->next)
-	{
-		printf("%4i | ", head->data);
-		head = head->next;
-	}
-	printf("%i\n", head->data);
-	//printf("\n");
 }

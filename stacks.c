@@ -6,23 +6,13 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:26:54 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/05 14:00:15 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/07 17:26:17 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_ordered(t_pslist *head)
-{
-	while (head->next)
-	{
-		if (head->data > head->next->data)
-			return (0);
-		head = head->next;
-	}
-	return (1);
-}
-void	greaters(t_pslist *head)
+int	is_rotate_a(t_pslist *head)
 {
 	t_pslist	*node;
 
@@ -34,8 +24,16 @@ void	greaters(t_pslist *head)
 			head->greaters++;
 		node = node->next;
 	}
+	if (!head)
+		return (0);
+	if (head->greaters <= size_list(head) * 2 / 3 && size_list(head) != 3)
+		return (1);
+	if (size_list(head) == 3 && find_greatest(head) == head)
+		return (1);
+	return (0);
 }
-void	smallers(t_pslist *head)
+
+int	is_rotate_b(t_pslist *head)
 {
 	t_pslist	*node;
 
@@ -47,27 +45,13 @@ void	smallers(t_pslist *head)
 			head->smallers++;
 		node = node->next;
 	}
-}
-int	is_rotate_a(t_pslist *head)
-{
-	if (!head)
-		return (0);
-	greaters(head);
-	if (head->greaters <= size_list(head) * 2 / 3 && size_list(head) != 3)
-		return (1);
-	if (size_list(head) == 3 && find_greatest(head) == head)
-		return (1);
-	return (0);
-}
-int	is_rotate_b(t_pslist *head)
-{
 	if (!head || size_list(head) < 2)
 		return (0);
-	smallers(head);
 	if (head->smallers <= size_list(head) * 2 / 3 && size_list(head) > 3)
 		return (1);
 	return (0);
 }
+
 int	is_swap_a(t_pslist *head)
 {
 	if (!head || !head->next)
@@ -76,6 +60,7 @@ int	is_swap_a(t_pslist *head)
 		return (1);
 	return (0);
 }
+
 int	is_swap_b(t_pslist *head)
 {
 	if (!head || !head->next)
@@ -84,6 +69,7 @@ int	is_swap_b(t_pslist *head)
 		return (1);
 	return (0);
 }
+
 t_pslist	*set_list(char **args)
 {
 	t_pslist	*list;
@@ -103,7 +89,7 @@ t_pslist	*set_list(char **args)
 	{
 		new = new_list(ft_atoi(args[i]));
 		if (!new)
-			return clear_list(list);
+			return (clear_list(list, NULL));
 		new->name = 'A';
 		next->next = new;
 		next = new;

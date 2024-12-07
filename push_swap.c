@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/07 15:50:38 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/07 17:27:43 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	magic_one(t_pslist **stack_a, t_pslist **stack_b)
 	else
 		push(stack_a, stack_b);
 }
+
 void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 {
 	t_pslist	*greatest;
@@ -50,68 +51,43 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 	else
 		reverse_rotate(stack_b, 1);
 }
+
+void	last_touch(t_pslist **stack_a, t_pslist **stack_b)
+{
+	if (is_swap_a(*stack_a))
+		swap(stack_a, 1);
+	push(stack_b, stack_a);
+}
+
 void	start_magic(char **args)
 {
 	t_pslist	*stack_a;
 	t_pslist	*stack_b;
 
-	stack_b = set_list_B(args[0]);
+	stack_b = set_list_b(args[0]);
 	if (!stack_b)
 		return ;
 	stack_b->name = 'C';
 	stack_a = set_list(args);
 	if (!stack_a)
 	{
-		clear_list(stack_b);
+		clear_list(stack_b, NULL);
 		return ;
 	}
 	if (is_ordered(stack_a))
 	{
-		clear_list(stack_a);
-		printf("Numbers are ordered!\n");
+		clear_list(stack_a, stack_b);
 		return ;
 	}
-	//print_list(stack_a);
 	while (!is_ordered(stack_a))
-	{
 		magic_one(&stack_a, &stack_b);
-	//print_list(stack_a);
-	//print_list(stack_b);
-	}
-	while ( size_list(stack_b) > 2)
-	{
+	while (size_list(stack_b) > 1)
 		magic_two(&stack_a, &stack_b);
-	//print_list(stack_a);
-	//print_list(stack_b);
-	}
 	if (stack_b->name != 'C')
-	{
-		if (is_swap_a(stack_a))
-			swap(&stack_a, 1);
-		if (is_swap_b(stack_b))
-			swap(&stack_b, 1);
-		push(&stack_b, &stack_a);
-		push(&stack_b, &stack_a);
-	}
-	//print_list(stack_a);
-	//print_list(stack_b);
-	//printf("size %i\n", size_list(stack_a));
-	t_pslist *node;
-	node = stack_a;
-	while (node->next)
-	{
-		if (node->data > node->next->data)
-		{
-			printf("NOT ORDERED");
-			return ;
-		}
-		node = node->next;
-	}
-	//printf("IN ORDER");
-	//WRITE CODES ABOVE THIS
-	clear_list(stack_b);
-	clear_list(stack_a);
+		last_touch(&stack_a, &stack_b);
+	clear_list(stack_a, stack_b);
 }
+
 int	main(int argc, char **argv)
 {
 	char	**nums;
@@ -123,17 +99,17 @@ int	main(int argc, char **argv)
 		nums = ft_split(argv[1], ' ');
 		if (!nums)
 			return (0);
-		if (!is_args_num(nums)) //check if all args are numbers
+		if (!is_args_num(nums))
 		{
 			clear_split(nums);
-			return print_error();
+			return (print_error());
 		}
 		start_magic(nums);
 		clear_split(nums);
 		return (0);
 	}
-	if (!is_args_num(&argv[1])) //check if all args are numbers
-		return print_error();
+	if (!is_args_num(&argv[1]))
+		return (print_error());
 	start_magic(&argv[1]);
 	return (0);
 }
