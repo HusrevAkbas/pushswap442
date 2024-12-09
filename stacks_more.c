@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 15:31:08 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/07 17:20:59 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/09 14:22:49 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,11 +68,29 @@ int	size_list(t_pslist *head)
 {
 	int	size;
 
+	if (!head)
+		return (0);
 	size = 0;
 	while (head)
 	{
-		head = head->next;
 		size++;
+		head = head->next;
 	}
 	return (size);
+}
+
+void	find_greaters(t_pslist *head)
+{
+	t_pslist	*node;
+
+	if (!head)
+		return ;
+	head->greaters = 0;
+	node = head;
+	while (node)
+	{
+		if (node->data > head->data)
+			head->greaters++;
+		node = node->next;
+	}
 }

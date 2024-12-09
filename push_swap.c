@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/07 17:50:54 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/09 15:17:06 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,24 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 {
 	t_pslist	*greatest;
 
-	if (is_swap_a(*stack_a))
-	{
-		if (is_swap_b(*stack_b))
-			swap_both(stack_a, stack_b);
-		else
-			swap(stack_a, 1);
-	}
 	greatest = find_greatest(*stack_b);
-	if (greatest->second_greatest == *stack_b
-		&& greatest->data < (*stack_a)->data)
-		push(stack_b, stack_a);
-	if (greatest == *stack_b)
-		push(stack_b, stack_a);
-	else if (greatest->index <= size_list(*stack_b) / 2)
-		rotate(stack_b, 1);
+	find_greaters(*stack_b);
+	if ((*stack_b)->greaters <= 10)
+	{
+		if ((*stack_a)->last != find_greatest(*stack_a) && (*stack_a)->last->data > (*stack_b)->data)
+			reverse_rotate(stack_a, 1);
+		else if ((*stack_a)->data < (*stack_b)->data)
+			rotate(stack_a, 1);
+		else
+			push(stack_b, stack_a);
+	}
 	else
-		reverse_rotate(stack_b, 1);
+	{
+		if (greatest->index <= size_list(*stack_b) / 2)
+			rotate(stack_b, 1);
+		else
+			reverse_rotate(stack_b, 1);
+	}
 }
 
 void	start_magic(char **args)
@@ -76,8 +77,9 @@ void	start_magic(char **args)
 		magic_one(&stack_a, &stack_b);
 	while (size_list(stack_b) > 1)
 		magic_two(&stack_a, &stack_b);
-	if (is_swap_a(stack_a))
-		swap(&stack_a, 1);
+	while (!is_ordered(stack_a))
+		reverse_rotate(&stack_a, 1);
+	print_list(stack_a);
 	clear_list(stack_a, stack_b);
 }
 

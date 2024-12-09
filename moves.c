@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:00:15 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/07 17:28:27 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/09 15:10:54 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	reverse_rotate(t_pslist **head, int print_msg)
 void	push(t_pslist **src, t_pslist **dest)
 {
 	t_pslist	*src_fst;
-	t_pslist	*src_sec;
+	t_pslist	*last;
 	char		stack_name;
 
 	if (!src || !dest || !(*src))
@@ -98,15 +98,20 @@ void	push(t_pslist **src, t_pslist **dest)
 		free(*dest);
 		*dest = NULL;
 		stack_name = 'B';
+		last = NULL;
 	}
 	else
+	{
 		stack_name = (*dest)->name;
+		last = (*dest)->last;
+	}
 	src_fst = *src;
-	src_sec = src_fst->next;
-	*src = src_sec;
+	*src = (*src)->next;
 	src_fst->next = *dest;
 	*dest = src_fst;
 	src_fst->name = stack_name;
+	src_fst->last = last;
+	//ft_printf("p%c\n", ft_tolower(src_fst->name));
 	if (src_fst->name == 'A')
 		write(1, "pa\n", 3);
 	else
