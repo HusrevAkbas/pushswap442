@@ -6,14 +6,13 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:46 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 17:16:21 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 18:25:03 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 # include "libft/libft.h"
-# include <stdio.h> //DELETE THIS LINE
 
 typedef struct s_pslist
 {
