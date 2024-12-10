@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 14:42:32 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 14:49:54 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 	{
 		if (greatest->index <= size_list(*stack_b) / 2)
 			rotate(stack_b, 1);
+		else if ((*stack_a)->last != find_greatest(*stack_a)
+			&& (*stack_a)->last->data > greatest->data)
+			reverse_rotate_both(stack_a, stack_b);
 		else
 			reverse_rotate(stack_b, 1);
 	}
