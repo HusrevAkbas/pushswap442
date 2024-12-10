@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 17:17:35 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 18:52:29 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,23 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 
 void	magic_three(t_pslist **stack_a)
 {
+	t_pslist	*node;
+	t_pslist	*small;
+
 	while (!is_ordered(*stack_a))
 	{
+		node = *stack_a;
+		small = *stack_a;
+		while (node->next)
+		{
+			node = node->next;
+			if (node->data < small->data)
+				small = node;
+		}
 		if (find_greatest(*stack_a) == *stack_a)
 			rotate(stack_a, 1);
+		else if (small == node)
+			reverse_rotate(stack_a, 1);
 		else
 			swap(stack_a, 1);
 	}
