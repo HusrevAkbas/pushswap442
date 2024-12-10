@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 18:52:29 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 19:14:04 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 	find_greaters(*stack_b);
 	if ((*stack_b)->greaters <= (*stack_a)->count)
 	{
-		if ((*stack_a)->last != find_greatest(*stack_a)
+		if ((*stack_a)->data < (*stack_b)->data)
+			rotate(stack_a, 1);
+		else if ((*stack_a)->last != find_greatest(*stack_a)
 			&& (*stack_a)->last->data > (*stack_b)->data)
 			reverse_rotate(stack_a, 1);
-		else if ((*stack_a)->data < (*stack_b)->data)
-			rotate(stack_a, 1);
 		else
 			push(stack_b, stack_a);
 	}
