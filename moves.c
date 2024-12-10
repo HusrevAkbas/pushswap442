@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:00:15 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/09 15:10:54 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 14:41:07 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,9 +111,5 @@ void	push(t_pslist **src, t_pslist **dest)
 	*dest = src_fst;
 	src_fst->name = stack_name;
 	src_fst->last = last;
-	//ft_printf("p%c\n", ft_tolower(src_fst->name));
-	if (src_fst->name == 'A')
-		write(1, "pa\n", 3);
-	else
-		write(1, "pb\n", 3);
+	ft_printf("p%c\n", ft_tolower(src_fst->name));
 }

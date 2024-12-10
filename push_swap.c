@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/09 15:17:06 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 14:42:32 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 	find_greaters(*stack_b);
 	if ((*stack_b)->greaters <= 10)
 	{
-		if ((*stack_a)->last != find_greatest(*stack_a) && (*stack_a)->last->data > (*stack_b)->data)
+		if ((*stack_a)->last != find_greatest(*stack_a)
+			&& (*stack_a)->last->data > (*stack_b)->data)
 			reverse_rotate(stack_a, 1);
 		else if ((*stack_a)->data < (*stack_b)->data)
 			rotate(stack_a, 1);
@@ -61,7 +62,6 @@ void	start_magic(char **args)
 	stack_b = set_list_b(args[0]);
 	if (!stack_b)
 		return ;
-	stack_b->name = 'C';
 	stack_a = set_list(args);
 	if (!stack_a)
 	{
@@ -75,11 +75,10 @@ void	start_magic(char **args)
 	}
 	while (!is_ordered(stack_a))
 		magic_one(&stack_a, &stack_b);
-	while (size_list(stack_b) > 1)
+	while (size_list(stack_b) >= 1)
 		magic_two(&stack_a, &stack_b);
 	while (!is_ordered(stack_a))
 		reverse_rotate(&stack_a, 1);
-	print_list(stack_a);
 	clear_list(stack_a, stack_b);
 }
 
