@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:26:54 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 18:46:31 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 19:28:02 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	is_rotate_a(t_pslist *head)
 	}
 	if (!head)
 		return (0);
-	if (head->greaters <= size_list(head) * 2 / 3 && size_list(head) != 3)
+	else if (head->greaters <= size_list(head) * 2 / 3 && size_list(head) != 3)
 		return (1);
 	if (size_list(head) == 3 && find_greatest(head) == head)
 		return (1);

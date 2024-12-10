@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 19:14:04 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 19:43:12 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,20 @@
 
 void	magic_one(t_pslist **stack_a, t_pslist **stack_b)
 {
-	if (is_rotate_a(*stack_a))
+	t_pslist	*node;
+	t_pslist	*small;
+
+	node = *stack_a;
+	small = node;
+	while (node->next)
+	{
+		if (node->next->data < small->data)
+			small = node->next;
+		node = node->next;
+	}
+	if (size_list(*stack_a) > 3 && node == small)
+		reverse_rotate(stack_a, 1);
+	else if (is_rotate_a(*stack_a))
 	{
 		if (is_rotate_b(*stack_b))
 			rotate_both(stack_a, stack_b);
@@ -23,8 +36,6 @@ void	magic_one(t_pslist **stack_a, t_pslist **stack_b)
 	}
 	else if (is_rotate_b(*stack_b))
 		rotate(stack_b, 1);
-	else if (is_swap_a(*stack_a) && is_swap_b(*stack_b))
-		swap_both(stack_a, stack_b);
 	else
 		push(stack_a, stack_b);
 }
