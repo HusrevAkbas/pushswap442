@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:26:54 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 17:16:40 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 18:12:12 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	is_swap_b(t_pslist *head)
 t_pslist	*set_list(char **args)
 {
 	t_pslist	*list;
-	t_pslist	*next;
+	t_pslist	*node;
 	t_pslist	*new;
 	int			i;
 
@@ -83,7 +83,7 @@ t_pslist	*set_list(char **args)
 	if (!list)
 		return (NULL);
 	list->name = 'A';
-	next = list;
+	node = list;
 	i = 1;
 	while (args[i])
 	{
@@ -91,8 +91,8 @@ t_pslist	*set_list(char **args)
 		if (!new)
 			return (clear_list(list, NULL));
 		new->name = 'A';
-		next->next = new;
-		next = new;
+		node->next = new;
+		node = new;
 		i++;
 	}
 	set_count(list, i);

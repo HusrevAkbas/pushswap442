@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:03:53 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 14:38:25 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 18:20:10 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,47 @@ int	is_duplicate(char **args, int i)
 	return (0);
 }
 
+long	ft_atol(const char *str)
+{
+	long	a;
+	long	b;
+	long	is_n;
+
+	if (!str)
+		return (0);
+	a = 0;
+	is_n = -1;
+	while (*str == ' ' || (*str <= 13 && *str >= 9))
+		str++;
+	if (!ft_isdigit(str[0]) && !ft_isdigit(str[1]))
+		return (0);
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			is_n *= -1;
+		str++;
+	}
+	while (*str <= '9' && *str >= '0')
+	{
+		b = *str - 48;
+		a = a * 10 - b;
+		str++;
+	}
+	return (is_n * a);
+}
+
 int	is_args_num(char **args)
 {
-	int	i;
+	int		i;
 
 	if (!args || !args[0])
 		return (0);
 	i = 0;
 	while (args[i])
 	{
-		if (!is_number(args[i]))
+		if (!is_number(args[i]) || is_duplicate(args, i))
 			return (0);
-		if (is_duplicate(args, i))
+		if (ft_atol(args[i]) > INT_MAX || ft_atol(args[i]) < INT_MIN)
 			return (0);
 		i++;
 	}
