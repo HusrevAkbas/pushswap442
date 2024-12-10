@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 14:49:54 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 17:17:35 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 
 	greatest = find_greatest(*stack_b);
 	find_greaters(*stack_b);
-	if ((*stack_b)->greaters <= 10)
+	if ((*stack_b)->greaters <= (*stack_a)->count)
 	{
 		if ((*stack_a)->last != find_greatest(*stack_a)
 			&& (*stack_a)->last->data > (*stack_b)->data)
@@ -57,6 +57,17 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 	}
 }
 
+void	magic_three(t_pslist **stack_a)
+{
+	while (!is_ordered(*stack_a))
+	{
+		if (find_greatest(*stack_a) == *stack_a)
+			rotate(stack_a, 1);
+		else
+			swap(stack_a, 1);
+	}
+}
+
 void	start_magic(char **args)
 {
 	t_pslist	*stack_a;
@@ -71,17 +82,17 @@ void	start_magic(char **args)
 		clear_list(stack_b, NULL);
 		return ;
 	}
-	if (is_ordered(stack_a))
+	if (size_list(stack_a) == 3)
+		magic_three(&stack_a);
+	if (!is_ordered(stack_a))
 	{
-		clear_list(stack_a, stack_b);
-		return ;
+		while (!is_ordered(stack_a))
+			magic_one(&stack_a, &stack_b);
+		while (size_list(stack_b) >= 1)
+			magic_two(&stack_a, &stack_b);
+		while (!is_ordered(stack_a))
+			reverse_rotate(&stack_a, 1);
 	}
-	while (!is_ordered(stack_a))
-		magic_one(&stack_a, &stack_b);
-	while (size_list(stack_b) >= 1)
-		magic_two(&stack_a, &stack_b);
-	while (!is_ordered(stack_a))
-		reverse_rotate(&stack_a, 1);
 	clear_list(stack_a, stack_b);
 }
 

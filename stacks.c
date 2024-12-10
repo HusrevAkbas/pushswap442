@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:26:54 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/07 17:26:17 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 17:16:40 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,6 @@ t_pslist	*set_list(char **args)
 		next = new;
 		i++;
 	}
+	set_count(list, i);
 	return (list);
 }

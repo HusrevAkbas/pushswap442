@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:46 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 14:38:30 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/10 17:16:21 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_pslist
 	int				greaters;
 	int				smallers;
 	int				index;
+	int				count;
 	struct s_pslist	*second_greatest;
 	struct s_pslist	*last;
 	struct s_pslist	*next;
@@ -44,6 +45,7 @@ void		reverse_rotate(t_pslist **head, int print_msg);
 void		reverse_rotate_both(t_pslist **list_a, t_pslist **list_b);
 void		rotate(t_pslist **head, int print_msg);
 void		rotate_both(t_pslist **list_a, t_pslist **list_b);
+void		set_count(t_pslist *head, int i);
 t_pslist	*set_list(char **args);
 t_pslist	*set_list_b(char *arg);
 int			size_list(t_pslist *head);
