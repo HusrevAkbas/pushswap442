@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:27:05 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/07 17:25:11 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/11 12:10:15 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_pslist	*set_list_b(char *arg)
 {
 	t_pslist	*list;
 
-	list = new_list(atoi(arg));
+	list = new_list(ft_atoi(arg));
 	if (!list)
 		return (NULL);
 	list->name = 'C';
