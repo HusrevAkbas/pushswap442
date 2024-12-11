@@ -4,11 +4,12 @@ LIBFT := libft
 
 LIBFTA := libcheck
 
-SRC := list.c moves.c push_swap.c stacks.c utils.c moves_more.c stacks_more.c
-
+BASE := list.c moves.c stacks.c utils.c moves_more.c stacks_more.c
+SRC := ${BASE}
 OBJ := $(SRC:.c=.o)
 
 NAME := push_swap
+BONUSNAME := checker
 #| paste - - - - - - -
 TEST1 = ./${NAME} 33 26 86 60 37 61 77 79 7 58 72 34 35 75 4 64 14 67 31 57 96 38 78 5 19 36 90 98 52 88 66 24 22 59 55 63 20 99 94 27 32 6 95 89 45 3 23 62 16 68 40 87 65 92 11 17 84 53 100 56 8 71 46 50 1 15 82 9 13 30 81 39 44 42 85 43 12 41 76 2 51 93 80 83 97 91 25 21 49 10 73 47 74 70 54 18 29 69 48 28
 TEST100 = ./${NAME} 100 98 97 96 95 94 93 92 91 90 89 88 87 86 85 84 83 82 81 80 79 78 77 76 75 74 73 72 71 70 69 68 67 66 65 64 63 62 61 60 59 58 57 56 55 54 53 52 51 50 49 48 47 46 45 44 43 42 41 40 39 38 37 36 35 34 33 32 31 30 29 28 27 26 25 24 23 22 21 20 19 18 17 16 15 14 13 12 11 10 9 8 7 6 5 4 3 2 1 0
@@ -17,12 +18,12 @@ TEST500 = ./${NAME} 398 335 270 242 173 125 67 245 432 321 488 69 452 70 476 182
 TEST2 = ./${NAME} -3 4 12 33 77 || true
 TEST = ${TEST100}
 
-all: ${NAME} clean
+all: ${NAME}
 #	-${TEST2}
-	-${TEST}
+#	-${TEST}
 
 ${NAME}: ${OBJ} ${LIBFTA}
-	@-cc -g ${CFLAGS} ${OBJ} -L ${LIBFT} -lft -o ${NAME}
+	@-cc -g ${CFLAGS} ${OBJ} push_swap.c -L ${LIBFT} -lft -o ${NAME}
 
 ${OBJ}: ${SRC}
 	@- cc -g -c ${CFLAGS} ${SRC}
@@ -31,13 +32,19 @@ ${LIBFTA}:
 	@- ${MAKE} -C ${LIBFT} bonus clean
 	touch ${LIBFTA}
 
+bonus: ${BONUSNAME}
+
+${BONUSNAME}: ${OBJ} ${LIBFTA}
+	@-cc -g ${CFLAGS} ${OBJ} checker.c -L ${LIBFT} -lft -o ${BONUSNAME}
+
+
 clean:
 #@ ${MAKE} -C ${LIBFT} clean
-	@- rm -f ${OBJ}
+	@- rm -f ${OBJ} checker.o push_swap.o
 
 fclean: clean
 	@ ${MAKE} -C ${LIBFT} fclean
-	rm -f ${NAME} ${LIBFTA}
+	rm -f ${NAME} ${LIBFTA} ${BONUSNAME}
 
 re: fclean all
 
