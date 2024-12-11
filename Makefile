@@ -18,7 +18,7 @@ TEST500 = ./${NAME} 398 335 270 242 173 125 67 245 432 321 488 69 452 70 476 182
 TEST2 = ./${NAME} -3 4 12 33 77 || true
 TEST = ${TEST100}
 
-all: ${NAME}
+all: ${NAME} b
 #	-${TEST2}
 #	-${TEST}
 
@@ -31,6 +31,8 @@ ${OBJ}: ${SRC}
 ${LIBFTA}:
 	@- ${MAKE} -C ${LIBFT} bonus clean
 	touch ${LIBFTA}
+
+b: bonus clean
 
 bonus: ${BONUSNAME}
 

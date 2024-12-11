@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:46 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 19:43:52 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/11 13:37:23 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,7 @@ t_pslist	*set_list_b(char *arg);
 int			size_list(t_pslist *head);
 void		swap(t_pslist **head, int print_msg);
 void		swap_both(t_pslist **list_a, t_pslist **list_b);
+
+void	print_list(t_pslist *head);
 
 #endif // PUSH_SWAP_H
