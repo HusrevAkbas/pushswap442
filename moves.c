@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:00:15 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/11 13:37:14 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/11 15:13:21 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	reverse_rotate(t_pslist **head, int print_msg)
 	}
 }
 
-void	push(t_pslist **src, t_pslist **dest)
+void	push(t_pslist **src, t_pslist **dest, int print_msg)
 {
 	t_pslist	*src_fst;
 	t_pslist	*last;
@@ -93,6 +93,7 @@ void	push(t_pslist **src, t_pslist **dest)
 
 	if (!src || !dest || !(*src))
 		return ;
+	stack_name = (*dest)->name;
 	if ((*dest)->name == 'C')
 	{
 		free(*dest);
@@ -101,15 +102,13 @@ void	push(t_pslist **src, t_pslist **dest)
 		last = NULL;
 	}
 	else
-	{
-		stack_name = (*dest)->name;
 		last = (*dest)->last;
-	}
 	src_fst = *src;
 	*src = (*src)->next;
 	src_fst->next = *dest;
 	*dest = src_fst;
 	src_fst->name = stack_name;
 	src_fst->last = last;
-	ft_printf("p%c\n", ft_tolower(src_fst->name));
+	if (print_msg)
+		ft_printf("p%c\n", ft_tolower(src_fst->name));
 }

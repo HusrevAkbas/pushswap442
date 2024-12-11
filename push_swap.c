@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/10 19:43:12 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/11 15:17:59 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ void	magic_one(t_pslist **stack_a, t_pslist **stack_b)
 	else if (is_rotate_a(*stack_a))
 	{
 		if (is_rotate_b(*stack_b))
-			rotate_both(stack_a, stack_b);
+			rotate_both(stack_a, stack_b, 1);
 		else
 			rotate(stack_a, 1);
 	}
 	else if (is_rotate_b(*stack_b))
 		rotate(stack_b, 1);
 	else
-		push(stack_a, stack_b);
+		push(stack_a, stack_b, 1);
 }
 
 void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
@@ -54,7 +54,7 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 			&& (*stack_a)->last->data > (*stack_b)->data)
 			reverse_rotate(stack_a, 1);
 		else
-			push(stack_b, stack_a);
+			push(stack_b, stack_a, 1);
 	}
 	else
 	{
@@ -62,7 +62,7 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 			rotate(stack_b, 1);
 		else if ((*stack_a)->last != find_greatest(*stack_a)
 			&& (*stack_a)->last->data > greatest->data)
-			reverse_rotate_both(stack_a, stack_b);
+			reverse_rotate_both(stack_a, stack_b, 1);
 		else
 			reverse_rotate(stack_b, 1);
 	}

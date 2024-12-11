@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:29:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/11 13:35:01 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/11 15:17:32 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static void	check(char **args)
 		else if (!ft_strncmp(str, "sb\n", 3))
 			swap(&stack_b, 0);
 		else if (!ft_strncmp(str, "pa\n", 3))
-			push(&stack_b, &stack_a);
+			push(&stack_b, &stack_a, 0);
 		else if (!ft_strncmp(str, "pb\n", 3))
-			push(&stack_a, &stack_b);
+			push(&stack_a, &stack_b, 0);
 		else if (!ft_strncmp(str, "ra\n", 3))
 			rotate(&stack_a, 0);
 		else if (!ft_strncmp(str, "rb\n", 3))
@@ -53,11 +53,11 @@ static void	check(char **args)
 		else if (!ft_strncmp(str, "rrb\n", 3))
 			reverse_rotate(&stack_b, 0);
 		else if (!ft_strncmp(str, "ss\n", 3))
-			swap_both(&stack_a, &stack_b);
+			swap_both(&stack_a, &stack_b, 0);
 		else if (!ft_strncmp(str, "rr\n", 3))
-			rotate_both(&stack_a, &stack_b);
+			rotate_both(&stack_a, &stack_b, 0);
 		else if (!ft_strncmp(str, "rrr\n", 3))
-			reverse_rotate_both(&stack_a, &stack_b);
+			reverse_rotate_both(&stack_a, &stack_b, 0);
 		str = get_next_line(0);
 	}
 	if (!is_ordered(stack_a) || (size_list(stack_b) != 0 && stack_b->name == 'B'))
