@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:29:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/12 13:22:42 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/12 14:29:46 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,25 @@ char	*make_move(t_pslist **stack_a, t_pslist **stack_b, char *move)
 	return (move);
 }
 
+int	read_input(t_pslist **stack_a, t_pslist **stack_b)
+{
+	char	*str;
+
+	str = get_next_line(0);
+	while (str)
+	{
+		if (!make_move(stack_a, stack_b, str))
+			return (0);
+		str = get_next_line(0);
+	}
+	return (1);
+}
+
 static void	check(char **args)
 {
 	t_pslist	*stack_a;
 	t_pslist	*stack_b;
-	char		*str;
+	int			valid;
 
 	stack_b = set_list_b(args[0]);
 	if (!stack_b)
@@ -56,23 +70,15 @@ static void	check(char **args)
 		clear_list(stack_b, NULL);
 		return ;
 	}
-	str = get_next_line(0);
-	while (str)
-	{
-		if (!make_move(&stack_a, &stack_b, str))
-		{
-			write(1, "KO\n", 3);
-			return ;
-		}
-		str = get_next_line(0);
-	}
-	if (!is_ordered(stack_a) || (size_list(stack_b) != 0 && stack_b->name == 'B'))
+	valid = read_input(&stack_a, &stack_b);
+	if (!is_ordered(stack_a) || !valid
+		|| (size_list(stack_b) != 0 && stack_b->name == 'B'))
 		write(1, "KO\n", 3);
 	else
 		write(1, "OK\n", 3);
 }
 
-int	main (int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	char	**nums;
 

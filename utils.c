@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:03:53 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/11 13:05:13 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/12 14:30:05 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,4 @@ int	is_args_num(char **args)
 		i++;
 	}
 	return (1);
-}
-void	print_list(t_pslist *head)
-{
-	if (!head)
-		ft_printf("No element");
-	ft_printf("%c : ", head->name);
-	while (head)
-	{
-		ft_printf("%3d |", head->data);
-		head = head->next;
-	}
-	ft_printf("\n");
 }

@@ -6,8 +6,8 @@ if [ "$#" -ne 2 ]; then
 		exit 1
 fi
 
-#PATH_CHECKER="../checker"
-PATH_CHECKER="./checker_linux"
+PATH_CHECKER="../checker"
+#PATH_CHECKER="./checker_linux"
 PATH_PUSH_SWAP="../push_swap"
 FILE="$1"                     # Filename from command line argument
 MAX_OPERATIONS="$2"           # Maximum operations from command line argument
