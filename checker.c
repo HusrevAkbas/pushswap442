@@ -6,11 +6,40 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:29:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/11 15:17:32 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/12 13:22:42 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+char	*make_move(t_pslist **stack_a, t_pslist **stack_b, char *move)
+{
+	if (!ft_strncmp(move, "sa\n", 3))
+		swap(stack_a, 0);
+	else if (!ft_strncmp(move, "sb\n", 3))
+		swap(stack_b, 0);
+	else if (!ft_strncmp(move, "pa\n", 3))
+		push(stack_b, stack_a, 0);
+	else if (!ft_strncmp(move, "pb\n", 3))
+		push(stack_a, stack_b, 0);
+	else if (!ft_strncmp(move, "ra\n", 3))
+		rotate(stack_a, 0);
+	else if (!ft_strncmp(move, "rb\n", 3))
+		rotate(stack_b, 0);
+	else if (!ft_strncmp(move, "rra\n", 3))
+		reverse_rotate(stack_a, 0);
+	else if (!ft_strncmp(move, "rrb\n", 3))
+		reverse_rotate(stack_b, 0);
+	else if (!ft_strncmp(move, "ss\n", 3))
+		swap_both(stack_a, stack_b, 0);
+	else if (!ft_strncmp(move, "rr\n", 3))
+		rotate_both(stack_a, stack_b, 0);
+	else if (!ft_strncmp(move, "rrr\n", 3))
+		reverse_rotate_both(stack_a, stack_b, 0);
+	else
+		return (NULL);
+	return (move);
+}
 
 static void	check(char **args)
 {
@@ -27,37 +56,14 @@ static void	check(char **args)
 		clear_list(stack_b, NULL);
 		return ;
 	}
-	print_list(stack_a);
 	str = get_next_line(0);
 	while (str)
 	{
-		//print_list(stack_a);
-		//print_list(stack_b);
-		if (!ft_strncmp(str, "Error\n", 6))
+		if (!make_move(&stack_a, &stack_b, str))
+		{
+			write(1, "KO\n", 3);
 			return ;
-		//ft_printf("get: %s", str);
-		if (!ft_strncmp(str, "sa\n", 3))
-			swap(&stack_a, 0);
-		else if (!ft_strncmp(str, "sb\n", 3))
-			swap(&stack_b, 0);
-		else if (!ft_strncmp(str, "pa\n", 3))
-			push(&stack_b, &stack_a, 0);
-		else if (!ft_strncmp(str, "pb\n", 3))
-			push(&stack_a, &stack_b, 0);
-		else if (!ft_strncmp(str, "ra\n", 3))
-			rotate(&stack_a, 0);
-		else if (!ft_strncmp(str, "rb\n", 3))
-			rotate(&stack_b, 0);
-		else if (!ft_strncmp(str, "rra\n", 3))
-			reverse_rotate(&stack_a, 0);
-		else if (!ft_strncmp(str, "rrb\n", 3))
-			reverse_rotate(&stack_b, 0);
-		else if (!ft_strncmp(str, "ss\n", 3))
-			swap_both(&stack_a, &stack_b, 0);
-		else if (!ft_strncmp(str, "rr\n", 3))
-			rotate_both(&stack_a, &stack_b, 0);
-		else if (!ft_strncmp(str, "rrr\n", 3))
-			reverse_rotate_both(&stack_a, &stack_b, 0);
+		}
 		str = get_next_line(0);
 	}
 	if (!is_ordered(stack_a) || (size_list(stack_b) != 0 && stack_b->name == 'B'))
