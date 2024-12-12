@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 15:27:05 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/11 12:10:15 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/12 15:27:54 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ t_pslist	*clear_list(t_pslist *head, t_pslist *other)
 		return (NULL);
 	if (head->next)
 		clear_list(head->next, NULL);
-	if (other && other->next)
-		clear_list(other->next, NULL);
+	if (other)
+		clear_list(other, NULL);
 	free(head);
 	head = NULL;
 	return (NULL);
