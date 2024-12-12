@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:29:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/12 14:29:46 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/12 15:07:51 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@ static void	check(char **args)
 		return ;
 	}
 	valid = read_input(&stack_a, &stack_b);
-	if (!is_ordered(stack_a) || !valid
-		|| (size_list(stack_b) != 0 && stack_b->name == 'B'))
+	if (!valid)
+		print_error();
+	else if (!is_ordered(stack_a) || (size_list(stack_b) != 0
+			&& stack_b->name == 'B'))
 		write(1, "KO\n", 3);
 	else
 		write(1, "OK\n", 3);
