@@ -6,7 +6,7 @@
 /*   By: husrevakbas <husrevakbas@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/15 12:47:51 by husrevakbas      ###   ########.fr       */
+/*   Updated: 2024/12/15 13:08:37 by husrevakbas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,12 @@ void	magic_three(t_pslist **stack_a)
 
 void	magic_one(t_pslist **stack_a, t_pslist **stack_b)
 {
-	t_pslist	*node;
 	t_pslist	*small;
 
-	node = *stack_a;
-	small = node;
-	while (node->next)
-	{
-		if (node->next->data < small->data)
-			small = node->next;
-		node = node->next;
-	}
-	if (size_list(*stack_a) > 3 && node == small)
+	small = find_smallest(*stack_a);
+	if (size_list(*stack_a) == 3)
+		magic_three(stack_a);
+	else if (size_list(*stack_a) > 3 && (*stack_a)->last == small)
 		reverse_rotate(stack_a, 1);
 	else if (is_rotate_a(*stack_a))
 	{
@@ -70,6 +64,7 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 
 	greatest = find_greatest(*stack_b);
 	find_greaters(*stack_b);
+	find_last(*stack_a);
 	if ((*stack_b)->greaters <= (*stack_a)->count)
 	{
 		if ((*stack_a)->data < (*stack_b)->data)

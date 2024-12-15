@@ -6,7 +6,7 @@
 /*   By: husrevakbas <husrevakbas@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 18:03:53 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/15 12:26:37 by husrevakbas      ###   ########.fr       */
+/*   Updated: 2024/12/15 13:10:38 by husrevakbas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,16 +96,4 @@ int	is_args_num(char **args)
 		i++;
 	}
 	return (1);
-}
-void	pl(t_pslist *head)
-{
-	if (!head)
-		return ;
-	ft_printf("%c : ", head->name);
-	while (head)
-	{
-		ft_printf("%3i |", head->data);
-		head = head->next;
-	}
-	ft_printf("\n");
 }
