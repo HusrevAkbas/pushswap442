@@ -47,7 +47,7 @@ fclean: clean
 	@ ${MAKE} -C ${LIBFT} fclean
 	rm -f ${NAME} ${LIBFTA} ${BONUSNAME}
 
-re: fclean all
+re: fclean all bonus
 
 val: all
 	@valgrind -s --leak-check=yes --show-leak-kinds=all --track-origins=yes ${TEST}
