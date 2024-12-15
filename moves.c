@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: husrevakbas <husrevakbas@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/30 15:00:15 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/11 15:13:21 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/15 12:46:31 by husrevakbas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	find_last(t_pslist *head)
+{
+	t_pslist	*node;
+
+	if (!head)
+		return ;
+	node = head;
+	while (node->next)
+		node = node->next;
+	head->last = node;
+}
 
 void	swap(t_pslist **head, int print_msg)
 {
@@ -47,7 +59,7 @@ void	rotate(t_pslist **head, int print_msg)
 		sec = sec->next;
 	sec->next = fst;
 	fst->next = NULL;
-	(*head)->last = fst;
+	find_last(*head);
 	if (print_msg)
 	{
 		if ((*head)->name == 'A')
@@ -88,7 +100,6 @@ void	reverse_rotate(t_pslist **head, int print_msg)
 void	push(t_pslist **src, t_pslist **dest, int print_msg)
 {
 	t_pslist	*src_fst;
-	t_pslist	*last;
 	char		stack_name;
 
 	if (!src || !dest || !(*src))
@@ -99,16 +110,14 @@ void	push(t_pslist **src, t_pslist **dest, int print_msg)
 		free(*dest);
 		*dest = NULL;
 		stack_name = 'B';
-		last = NULL;
 	}
-	else
-		last = (*dest)->last;
 	src_fst = *src;
 	*src = (*src)->next;
 	src_fst->next = *dest;
 	*dest = src_fst;
 	src_fst->name = stack_name;
-	src_fst->last = last;
+	find_last(*src);
+	find_last(*dest);
 	if (print_msg)
 		ft_printf("p%c\n", ft_tolower(src_fst->name));
 }

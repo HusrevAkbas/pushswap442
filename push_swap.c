@@ -3,14 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: husrevakbas <husrevakbas@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:52 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/12 14:20:47 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/15 12:47:51 by husrevakbas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	magic_three(t_pslist **stack_a)
+{
+	t_pslist	*node;
+	t_pslist	*small;
+
+	while (!is_ordered(*stack_a))
+	{
+		node = *stack_a;
+		small = *stack_a;
+		while (node->next)
+		{
+			node = node->next;
+			if (node->data < small->data)
+				small = node;
+		}
+		if (find_greatest(*stack_a) == *stack_a)
+			rotate(stack_a, 1);
+		else if (small == node)
+			reverse_rotate(stack_a, 1);
+		else
+			swap(stack_a, 1);
+	}
+}
 
 void	magic_one(t_pslist **stack_a, t_pslist **stack_b)
 {
@@ -65,30 +89,6 @@ void	magic_two(t_pslist **stack_a, t_pslist **stack_b)
 			reverse_rotate_both(stack_a, stack_b, 1);
 		else
 			reverse_rotate(stack_b, 1);
-	}
-}
-
-void	magic_three(t_pslist **stack_a)
-{
-	t_pslist	*node;
-	t_pslist	*small;
-
-	while (!is_ordered(*stack_a))
-	{
-		node = *stack_a;
-		small = *stack_a;
-		while (node->next)
-		{
-			node = node->next;
-			if (node->data < small->data)
-				small = node;
-		}
-		if (find_greatest(*stack_a) == *stack_a)
-			rotate(stack_a, 1);
-		else if (small == node)
-			reverse_rotate(stack_a, 1);
-		else
-			swap(stack_a, 1);
 	}
 }
 
