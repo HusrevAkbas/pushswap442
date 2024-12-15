@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: husrevakbas <husrevakbas@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:26:46 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/12 14:29:59 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/15 12:21:40 by husrevakbas      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,5 @@ int			size_list(t_pslist *head);
 void		swap(t_pslist **head, int print_msg);
 void		swap_both(t_pslist **list_a, t_pslist **list_b, int print_msg);
 
+void	pl(t_pslist *head);
 #endif // PUSH_SWAP_H
