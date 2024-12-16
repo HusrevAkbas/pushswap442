@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:29:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/12 15:07:51 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/16 10:47:13 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	read_input(t_pslist **stack_a, t_pslist **stack_b)
 	char	*str;
 
 	str = get_next_line(0);
+	if (is_ordered(*stack_a) && str != NULL)
+		return (0);
 	while (str)
 	{
 		if (!make_move(stack_a, stack_b, str))

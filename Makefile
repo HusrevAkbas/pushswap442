@@ -19,9 +19,9 @@ TEST2 = ./${NAME} -3 4 12 33 77 88
 TEST = ${TEST2}
 
 all: ${NAME}
-	${TEST}
+#${TEST}
 
-${NAME}: ${OBJ} ${LIBFTA}
+${NAME}: ${OBJ} ${LIBFTA} push_swap.c
 	@-cc -g ${CFLAGS} ${OBJ} push_swap.c -L ${LIBFT} -lft -o ${NAME}
 
 ${OBJ}: ${SRC}
@@ -35,12 +35,12 @@ b: bonus clean
 
 bonus: ${BONUSNAME}
 
-${BONUSNAME}: ${OBJ} ${LIBFTA}
+${BONUSNAME}: ${OBJ} ${LIBFTA} checker.c
 	@-cc -g ${CFLAGS} ${OBJ} checker.c -L ${LIBFT} -lft -o ${BONUSNAME}
 
 
 clean:
-#@ ${MAKE} -C ${LIBFT} clean
+#@ ${MAKE} -C ${LIBFT} clean --- it s already cleaned after creating archive 
 	@- rm -f ${OBJ} checker.o push_swap.o
 
 fclean: clean
