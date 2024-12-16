@@ -6,7 +6,7 @@
 /*   By: huakbas <huakbas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 12:29:38 by huakbas           #+#    #+#             */
-/*   Updated: 2024/12/16 10:47:13 by huakbas          ###   ########.fr       */
+/*   Updated: 2024/12/16 11:16:26 by huakbas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	read_input(t_pslist **stack_a, t_pslist **stack_b)
 
 	str = get_next_line(0);
 	if (is_ordered(*stack_a) && str != NULL)
-		return (0);
+		return (2);
 	while (str)
 	{
 		if (!make_move(stack_a, stack_b, str))
@@ -73,9 +73,9 @@ static void	check(char **args)
 		return ;
 	}
 	valid = read_input(&stack_a, &stack_b);
-	if (!valid)
+	if (valid == 0)
 		print_error();
-	else if (!is_ordered(stack_a) || (size_list(stack_b) != 0
+	else if (!is_ordered(stack_a) || valid == 2 || (size_list(stack_b) != 0
 			&& stack_b->name == 'B'))
 		write(1, "KO\n", 3);
 	else
